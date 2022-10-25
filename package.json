@@ -9,7 +9,7 @@
     "lint": "eslint src/*.js src/**/*.js src/*.ts src/**/*.ts src/*.jsx src/**/*.jsx src/*.tsx src/**/*.tsx",
     "prettier:start": "prettier --config .prettierrc --check \"src/**/*.{ts,tsx,js,jsx,css,html}\"",
     "prepare": "husky install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo exit Ok"
   },
   "husky": {
     "hooks": {
