@@ -28,7 +28,7 @@ const SubmitBtn = ({ isEdit }) => {
         onClick={
           !isEdit ? navigateAndClosePopup : navigateAndClosePopupAfterEditing
         }
-        className="text-white ml-4 rounded bg-lightred uppercase px-14 py-4"
+        className="text-white text-sm ml-4 rounded bg-lightred uppercase px-6 py-4"
       >
         Submit
       </button>

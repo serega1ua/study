@@ -4,9 +4,9 @@ import PropTypes, { object, string } from "prop-types";
 const Select = ({ items, label }) => {
   return (
     <>
-      <label className="text-lightred mb-3">{label}</label>
+      <label className="text-lightred text-sm mb-3">{label}</label>
       <select
-        className="bg-gray rounded mb-8 placeholder:text-white pl-2 pr-96 h-14 py-4 text-white"
+        className="bg-gray rounded text-sm mb-8 placeholder:text-white pl-2 pr-19rem  py-4 text-white"
         name="select"
       >
         <option selected>Select Genre</option>

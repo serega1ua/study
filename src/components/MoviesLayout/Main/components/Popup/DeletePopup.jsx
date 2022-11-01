@@ -10,7 +10,7 @@ const DeletePopup = () => {
     setIsShowDeletePopup(!isShowDeletePopup);
   };
   return (
-    <div className="bg-black shadow-lg z-50 fixed left-1/3 h-96 top-20 w-ultraxxl flex flex-col items-center justify-center">
+    <div className="bg-black shadow-lg z-50 fixed shadow-lg left-1/2 -translate-x-1/2 h-96 top-20 w-ultraxxl flex flex-col items-center justify-center">
       <div className="flex flex-col items-center text-center m-0 justify-start">
         <button
           className="absolute top-1 right-3"

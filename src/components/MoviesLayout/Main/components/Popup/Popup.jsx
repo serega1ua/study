@@ -18,7 +18,7 @@ const Popup = ({ heading, isEdit, movie }) => {
   return (
     <>
       {!isEdit && isShowPopup && !movie && (
-        <div className="fixed flex flex-col items-center justify-start left-96 inset-0 z-10 p-8 text-white bg-black w-popup">
+        <div className="fixed flex flex-col top-3 bottom-3 items-center justify-start shadow-lg left-1/2 -translate-x-1/2 inset-0 z-10 p-3 text-white bg-black w-popup">
           <div className="flex flex-col">
             <button onClick={() => setIsShowPopup(!isShowPopup)}>
               <svg
@@ -38,7 +38,7 @@ const Popup = ({ heading, isEdit, movie }) => {
                 </g>
               </svg>
             </button>
-            <h1 className="text-5xl text-white mt-16 mb-9">{heading}</h1>
+            <h1 className="text-5xl text-white mt-10 mb-5">{heading}</h1>
             <div className="flex">
               <div className="flex flex-col mr-8">
                 <TextInput placeholder="Title:" label="TITLE" type="text" />
@@ -63,7 +63,7 @@ const Popup = ({ heading, isEdit, movie }) => {
                 <TextInput placeholder="Rating" label="RATING" type="number" />
               </div>
             </div>
-            <div className="flex">
+            <div className="flex justify-between">
               <div className="flex flex-col mr-8">
                 <Select items={options} label="GENRE" />
               </div>
@@ -84,7 +84,7 @@ const Popup = ({ heading, isEdit, movie }) => {
         </div>
       )}
       {isEdit && isShowEditPopup && movie && (
-        <div className="fixed flex flex-col items-center justify-start left-96 inset-0 z-10 p-8 text-white bg-black w-popup">
+        <div className="fixed flex flex-col top-3 bottom-3 items-center justify-start shadow-lg left-1/2 -translate-x-1/2 inset-0 z-10 p-3 text-white bg-black w-popup">
           <div className="flex flex-col">
             <button onClick={() => setIsShowEditPopup(!isShowEditPopup)}>
               <svg
@@ -104,7 +104,7 @@ const Popup = ({ heading, isEdit, movie }) => {
                 </g>
               </svg>
             </button>
-            <h1 className="text-5xl text-white mt-16 mb-9">{heading}</h1>
+            <h1 className="text-3xl text-white mt-5 mb-3">{heading}</h1>
             <div className="flex">
               <div className="flex flex-col mr-8">
                 <TextInput
