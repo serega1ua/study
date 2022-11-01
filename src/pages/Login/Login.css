@@ -1,0 +1,11 @@
+.login-page {
+  background: url("../../assets/bg-login.jpg") #555555;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
