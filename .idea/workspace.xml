@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="791ec84d-b989-4341-88ed-5bbbdb235240" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Forms/ResetBtn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/ResetBtn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Forms/Select.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/Select.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubmitBtn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubmitBtn.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Forms/TextArea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/TextArea.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Forms/TextInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/TextInput.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MoviesLayout/Main/components/Popup/DeletePopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MoviesLayout/Main/components/Popup/DeletePopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MoviesLayout/Main/components/Popup/Popup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MoviesLayout/Main/components/Popup/Popup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MoviesLayout/Main/components/Popup/SuccessAddedPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MoviesLayout/Main/components/Popup/SuccessAddedPopup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +40,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667317916409</updated>
       <workItem from="1667317917836" duration="416000" />
-      <workItem from="1667318445569" duration="4462000" />
+      <workItem from="1667318445569" duration="5872000" />
     </task>
     <servers />
   </component>

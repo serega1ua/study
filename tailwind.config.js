@@ -5,8 +5,8 @@ module.exports = {
     extend: {
       display: ["group-hover"],
       padding: {
-        '19rem': '19rem',
-      }
+        "19rem": "19rem",
+      },
     },
     colors: {
       lightred: "#F65261",
