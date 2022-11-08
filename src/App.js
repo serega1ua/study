@@ -1,16 +1,9 @@
-import "./styles.css";
-import Counter from "./components/Counter";
-import SearchWrapper from "./components/Search";
-import GenreToggle from "./components/GenreToggle";
-import Todo from "./components/Todo";
+import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
 
-export default function App() {
-  return (
-      <div className="App">
-        <Counter />
-        <SearchWrapper />
-        <GenreToggle />
-        <Todo />
-      </div>
-  );
+function App() {
+  return <div className="App bg-gray">sds</div>;
 }
+
+export default App;
