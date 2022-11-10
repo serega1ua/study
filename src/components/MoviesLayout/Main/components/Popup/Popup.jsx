@@ -5,6 +5,7 @@ import TextArea from "../../../../Forms/TextArea";
 import ResetBtn from "../../../../Forms/ResetBtn";
 import SubmitBtn from "../../../../Forms/SubmitBtn";
 import Select from "../../../../Forms/Select";
+import usePopup from "../../../../../hooks/usePopup";
 
 const Popup = ({ heading, isEdit, movie }) => {
   const { isShowEditPopup, setIsShowEditPopup, isShowPopup, setIsShowPopup } =
@@ -15,12 +16,18 @@ const Popup = ({ heading, isEdit, movie }) => {
     { name: "Horror", id: 3 },
     { name: "Comedy", id: 4 },
   ];
+  const closeShowPopup = usePopup(false, setIsShowPopup, isShowPopup);
+  const closeShowEditPopup = usePopup(
+    false,
+    setIsShowEditPopup,
+    isShowEditPopup
+  );
   return (
     <>
       {!isEdit && isShowPopup && !movie && (
         <div className="fixed flex flex-col top-3 bottom-3 items-center justify-start shadow-lg left-1/2 -translate-x-1/2 inset-0 z-10 p-3 text-white bg-black w-popup">
           <div className="flex flex-col">
-            <button onClick={() => setIsShowPopup(!isShowPopup)}>
+            <button onClick={closeShowPopup}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -86,7 +93,7 @@ const Popup = ({ heading, isEdit, movie }) => {
       {isEdit && isShowEditPopup && movie && (
         <div className="fixed flex flex-col top-3 bottom-3 items-center justify-start shadow-lg left-1/2 -translate-x-1/2 inset-0 z-10 p-3 text-white bg-black w-popup">
           <div className="flex flex-col">
-            <button onClick={() => setIsShowEditPopup(!isShowEditPopup)}>
+            <button onClick={closeShowEditPopup}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

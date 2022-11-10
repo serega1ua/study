@@ -1,22 +1,21 @@
 import React, { useContext } from "react";
 import { Context } from "../../../../../context/MainContext";
-import { useNavigate } from "react-router-dom";
+import usePopup from "../../../../../hooks/usePopup";
+import useRoute from "../../../../../hooks/useRoute";
 
 const SuccessAddedPopup = () => {
   const { isShowSuccessAddedPopup, setIsShowSuccessAddedPopup } =
     useContext(Context);
-  const navigate = useNavigate();
-  const closePopupAndNavigate = () => {
-    navigate("/movies");
-    setIsShowSuccessAddedPopup(false);
-  };
+  const navigateToPage = useRoute("/movies");
+  const closePopup = usePopup(
+    navigateToPage,
+    setIsShowSuccessAddedPopup,
+    isShowSuccessAddedPopup
+  );
   return (
-    <div className="bg-black shadow-lg z-50 fixed shadow-lg left-1/2 -translate-x-1/2 h-96 top-20 w-ultraxxl flex flex-col items-center justify-center">
+    <div className="bg-black z-50 fixed shadow-lg left-1/2 -translate-x-1/2 h-96 top-20 w-ultraxxl flex flex-col items-center justify-center">
       <div className="flex flex-col items-center text-center m-0 justify-start">
-        <button
-          className="absolute top-1 right-3"
-          onClick={closePopupAndNavigate}
-        >
+        <button className="absolute top-1 right-3" onClick={closePopup}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

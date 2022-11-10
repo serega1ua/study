@@ -1,27 +1,30 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { Context } from "../../context/MainContext";
 import PropTypes from "prop-types";
+import useRoute from "../../hooks/useRoute";
+import usePopup from "../../hooks/usePopup";
 
 const SubmitBtn = ({ isEdit }) => {
-  const navigate = useNavigate();
-  const {
-    isShowPopup,
+  const { isShowPopup, setIsShowPopup, isShowEditPopup, setIsShowEditPopup } =
+    useContext(Context);
+  const navigateToEditedMovie = useRoute("/movies#success-edited-movie");
+  const closePopup = usePopup(
+    navigateToEditedMovie,
     setIsShowPopup,
-    isShowEditPopup,
+    isShowPopup
+  );
+  const closeEditedPopup = usePopup(
+    navigateToEditedMovie,
     setIsShowEditPopup,
-    isShowSuccessAddedPopup,
-    setIsShowSuccessAddedPopup,
-  } = useContext(Context);
+    isShowEditPopup
+  );
   const navigateAndClosePopup = () => {
-    navigate("/movies#success-added-movie");
-    setIsShowPopup(!isShowPopup);
-    setIsShowSuccessAddedPopup(true);
+    closePopup();
   };
   const navigateAndClosePopupAfterEditing = () => {
-    navigate("/movies#success-edited-movie");
-    setIsShowEditPopup(!isShowEditPopup);
+    closeEditedPopup();
   };
+
   return (
     <>
       <button

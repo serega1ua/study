@@ -8,7 +8,7 @@ const MovieDetails = ({ movie }) => {
     <div className="flex flex-col items-center bg-black justify-around py-8">
       <header className="flex justify-between w-details py-3">
         <span className="text-xl text-lightred">netflixroulette</span>
-        <button>
+        <button onClick={() => setIsSelectedMovie(!isSelectedMovie)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -32,24 +32,6 @@ const MovieDetails = ({ movie }) => {
         <div className="flex flex-col ml-5">
           <h1 className="text-white text-4xl uppercase flex items-center">
             {movie.title}{" "}
-            <button onClick={() => setIsSelectedMovie(!isSelectedMovie)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                className="humbleicons hi-times w-16 absolute right-3 text-white"
-              >
-                <g
-                  xmlns="http://www.w3.org/2000/svg"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                >
-                  <path d="M6 18L18 6M18 18L6 6" />
-                </g>
-              </svg>
-            </button>
             <span className="text-white border-white border-2 ml-5 rounded-full py-3 px-3 text-lg">
               {movie.rate}
             </span>

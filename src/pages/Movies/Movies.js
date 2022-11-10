@@ -4,6 +4,7 @@ import Popup from "../../components/MoviesLayout/Main/components/Popup/Popup";
 import SuccessAddedPopup from "../../components/MoviesLayout/Main/components/Popup/SuccessAddedPopup";
 import MainSection from "../../components/MoviesLayout/Main/MainSection";
 import { Context } from "../../context/MainContext";
+import usePopup from "../../hooks/usePopup";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -17,9 +18,6 @@ const Movies = () => {
     isShowEditPopup,
     setIsShowEditPopup,
     isShowSuccessAddedPopup,
-    setIsShowSuccessAddedPopup,
-    isSelectedMovie,
-    selectedMovie,
     setSelectedMovie,
     setIsSelectedMovie,
   } = useContext(Context);
@@ -38,6 +36,12 @@ const Movies = () => {
     const data = await res.json();
     setMovies(data);
   };
+  const showEditPopup = usePopup(false, setIsShowEditPopup, isShowEditPopup);
+  const showDeletePopup = usePopup(
+    false,
+    setIsShowDeletePopup,
+    isShowDeletePopup
+  );
   const setModalOn = (id) => {
     const currentMovie = movies.filter((movie) => movie.id === id);
     currentMovie[0].triggered = true;
@@ -125,20 +129,12 @@ const Movies = () => {
                           </button>
                           <ul>
                             <li className="mt-3 hover:bg-lightred">
-                              <a
-                                href="#edit"
-                                onClick={() =>
-                                  setIsShowEditPopup(!isShowEditPopup)
-                                }
-                              >
+                              <a href="#edit" onClick={showEditPopup}>
                                 Edit
                               </a>
                             </li>
                             <li className="mt-3 hover:bg-lightred hover:min-w-max">
-                              <a
-                                href="#delete"
-                                onClick={() => setIsShowDeletePopup(true)}
-                              >
+                              <a href="#delete" onClick={showDeletePopup}>
                                 Delete
                               </a>
                             </li>
