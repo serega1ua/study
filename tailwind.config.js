@@ -4,9 +4,6 @@ module.exports = {
   theme: {
     extend: {
       display: ["group-hover"],
-      padding: {
-        "19rem": "19rem",
-      },
     },
     colors: {
       lightred: "#F65261",
@@ -17,6 +14,7 @@ module.exports = {
       white: "#FFFFFF",
       mediumgray: "#424242",
       superlightgray: "#979797",
+      transparent: "transparent",
     },
     width: {
       ultraxxl: "713px",

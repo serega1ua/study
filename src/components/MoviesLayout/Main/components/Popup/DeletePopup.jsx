@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { Context } from "../../../../../context/MainContext";
-import useRoute from "../../../../../hooks/useRoute";
-import usePopup from "../../../../../hooks/usePopup";
+import { useNavigate } from "react-router-dom";
 
 const DeletePopup = () => {
   const { isShowDeletePopup, setIsShowDeletePopup } = useContext(Context);
-  const navigateToPage = useRoute("/movies");
-  const closePopup = usePopup(
-    navigateToPage,
-    setIsShowDeletePopup,
-    isShowDeletePopup
-  );
+  const navigate = useNavigate();
+  const navigateAndClosePopup = () => {
+    navigate("/movies");
+    setIsShowDeletePopup(!isShowDeletePopup);
+  };
   return (
     <div className="bg-black shadow-lg z-50 fixed left-1/2 -translate-x-1/2 h-96 top-20 w-ultraxxl flex flex-col items-center justify-center">
-      <div className="flex flex-col items-end m-auto text-center justify-start">
-        <button className="absolute top-1 right-3" onClick={closePopup}>
+      <div className="flex flex-col items-center text-center m-0 justify-start">
+        <button
+          className="absolute top-1 right-3"
+          onClick={() => setIsShowDeletePopup(!isShowDeletePopup)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -40,7 +41,7 @@ const DeletePopup = () => {
         </div>
         <div className="flex justify-end">
           <button
-            onClick={closePopup}
+            onClick={navigateAndClosePopup}
             className="text-white ml-4 rounded bg-lightred uppercase px-14 py-4"
           >
             Confirm

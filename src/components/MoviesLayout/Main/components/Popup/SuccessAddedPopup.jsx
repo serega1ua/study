@@ -1,21 +1,23 @@
 import React, { useContext } from "react";
 import { Context } from "../../../../../context/MainContext";
-import usePopup from "../../../../../hooks/usePopup";
-import useRoute from "../../../../../hooks/useRoute";
+import { useNavigate } from "react-router-dom";
+import SubmitBtn from "../../../../Forms/SubmitBtn";
 
 const SuccessAddedPopup = () => {
   const { isShowSuccessAddedPopup, setIsShowSuccessAddedPopup } =
     useContext(Context);
-  const navigateToPage = useRoute("/movies");
-  const closePopup = usePopup(
-    navigateToPage,
-    setIsShowSuccessAddedPopup,
-    isShowSuccessAddedPopup
-  );
+  const navigate = useNavigate();
+  const closePopupAndNavigate = () => {
+    navigate("/movies");
+    setIsShowSuccessAddedPopup(false);
+  };
   return (
-    <div className="bg-black z-50 fixed shadow-lg left-1/2 -translate-x-1/2 h-96 top-20 w-ultraxxl flex flex-col items-center justify-center">
+    <div className="bg-black shadow-lg z-50 py-16 fixed left-1/2 -translate-x-1/2 top-20 w-ultraxxl flex flex-col items-center justify-center">
       <div className="flex flex-col items-center text-center m-0 justify-start">
-        <button className="absolute top-1 right-3" onClick={closePopup}>
+        <button
+          className="absolute top-1 right-3"
+          onClick={closePopupAndNavigate}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -54,9 +56,15 @@ const SuccessAddedPopup = () => {
           </g>
         </svg>
         <h1 className="text-white uppercase text-4xl">congratulations !</h1>
-        <p className="text-white text-xl">
+        <p className="text-white text-xl mb-5 mt-5">
           The movie has been added to database successfully
         </p>
+        <button
+          onClick={closePopupAndNavigate}
+          className="text-white ml-4 rounded bg-lightred uppercase px-14 py-4"
+        >
+          Agree & Close
+        </button>
       </div>
     </div>
   );

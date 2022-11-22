@@ -1,10 +1,14 @@
 import React from "react";
-import useRoute from "../../hooks/useRoute";
+import { useNavigate } from "react-router-dom";
+
 const LoginBtn = () => {
-  const navigateToPage = useRoute("/movies");
+  const navigate = useNavigate();
+  const navigateToMoviesScreen = () => {
+    navigate("/movies");
+  };
   return (
     <button
-      onClick={navigateToPage}
+      onClick={navigateToMoviesScreen}
       className="text-white ml-4 rounded bg-lightred uppercase px-14 py-4"
     >
       Log in

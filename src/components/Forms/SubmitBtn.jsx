@@ -1,37 +1,38 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../../context/MainContext";
 import PropTypes from "prop-types";
-import useRoute from "../../hooks/useRoute";
-import usePopup from "../../hooks/usePopup";
+import { useDispatch } from "react-redux";
+import { postMovie } from "../../app/features/moviesReducer";
 
 const SubmitBtn = ({ isEdit }) => {
-  const { isShowPopup, setIsShowPopup, isShowEditPopup, setIsShowEditPopup } =
-    useContext(Context);
-  const navigateToEditedMovie = useRoute("/movies#success-edited-movie");
-  const closePopup = usePopup(
-    navigateToEditedMovie,
+  const navigate = useNavigate();
+  const {
+    isShowPopup,
     setIsShowPopup,
-    isShowPopup
-  );
-  const closeEditedPopup = usePopup(
-    navigateToEditedMovie,
+    isShowEditPopup,
     setIsShowEditPopup,
-    isShowEditPopup
-  );
+    isShowSuccessAddedPopup,
+    setIsShowSuccessAddedPopup,
+  } = useContext(Context);
+  const dispatch = useDispatch();
   const navigateAndClosePopup = () => {
-    closePopup();
+    navigate("/movies#success-added-movie");
+    dispatch(postMovie());
+    setIsShowPopup(!isShowPopup);
+    setIsShowSuccessAddedPopup(true);
   };
   const navigateAndClosePopupAfterEditing = () => {
-    closeEditedPopup();
+    navigate("/movies#success-edited-movie");
+    setIsShowEditPopup(!isShowEditPopup);
   };
-
   return (
     <>
       <button
         onClick={
           !isEdit ? navigateAndClosePopup : navigateAndClosePopupAfterEditing
         }
-        className="text-white text-sm ml-4 rounded bg-lightred uppercase px-6 py-4"
+        className="text-white ml-4 rounded bg-lightred uppercase px-14 py-4"
       >
         Submit
       </button>

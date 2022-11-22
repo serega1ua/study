@@ -5,7 +5,6 @@ import TextArea from "../../../../Forms/TextArea";
 import ResetBtn from "../../../../Forms/ResetBtn";
 import SubmitBtn from "../../../../Forms/SubmitBtn";
 import Select from "../../../../Forms/Select";
-import usePopup from "../../../../../hooks/usePopup";
 
 const Popup = ({ heading, isEdit, movie }) => {
   const { isShowEditPopup, setIsShowEditPopup, isShowPopup, setIsShowPopup } =
@@ -16,18 +15,12 @@ const Popup = ({ heading, isEdit, movie }) => {
     { name: "Horror", id: 3 },
     { name: "Comedy", id: 4 },
   ];
-  const closeShowPopup = usePopup(false, setIsShowPopup, isShowPopup);
-  const closeShowEditPopup = usePopup(
-    false,
-    setIsShowEditPopup,
-    isShowEditPopup
-  );
   return (
     <>
       {!isEdit && isShowPopup && !movie && (
-        <div className="fixed flex flex-col top-3 bottom-3 items-center justify-start shadow-lg left-1/2 -translate-x-1/2 inset-0 z-10 p-3 text-white bg-black w-popup">
+        <div className="fixed flex flex-col top-9 bottom-11 shadow-lg items-center left-1/2 -translate-x-1/2 justify-start inset-0 z-10 p-3 text-white bg-black w-popup">
           <div className="flex flex-col">
-            <button onClick={closeShowPopup}>
+            <button onClick={() => setIsShowPopup(!isShowPopup)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -45,12 +38,12 @@ const Popup = ({ heading, isEdit, movie }) => {
                 </g>
               </svg>
             </button>
-            <h1 className="text-5xl text-white mt-10 mb-5">{heading}</h1>
+            <h1 className="text-5xl text-white mt-16 mb-9">{heading}</h1>
             <div className="flex">
-              <div className="flex flex-col mr-8">
+              <div className="flex flex-col mr-8 basis-1/2">
                 <TextInput placeholder="Title:" label="TITLE" type="text" />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2">
                 <TextInput
                   placeholder="Date: "
                   label="RELEASE DATE"
@@ -59,22 +52,22 @@ const Popup = ({ heading, isEdit, movie }) => {
               </div>
             </div>
             <div className="flex">
-              <div className="flex flex-col mr-8">
+              <div className="flex flex-col mr-8 basis-1/2">
                 <TextInput
                   placeholder="Movie URL: "
                   label="MOVIE URL"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2">
                 <TextInput placeholder="Rating" label="RATING" type="number" />
               </div>
             </div>
-            <div className="flex justify-between">
-              <div className="flex flex-col mr-8">
+            <div className="flex min-w-full">
+              <div className=" flex flex-col basis-1/2 mr-8">
                 <Select items={options} label="GENRE" />
               </div>
-              <div className="flex flex-col">
+              <div className="min-w-fit basis-1/2 flex flex-col">
                 <TextInput
                   placeholder="Runtime"
                   label="RUNTIME"
@@ -83,6 +76,7 @@ const Popup = ({ heading, isEdit, movie }) => {
               </div>
             </div>
             <TextArea placeholder="Overview" label="OVERVIEW" rows={5} />
+
             <div className="flex justify-end max-w-full">
               <ResetBtn />
               <SubmitBtn isEdit={false} />
@@ -91,9 +85,9 @@ const Popup = ({ heading, isEdit, movie }) => {
         </div>
       )}
       {isEdit && isShowEditPopup && movie && (
-        <div className="fixed flex flex-col top-3 bottom-3 items-center justify-start shadow-lg left-1/2 -translate-x-1/2 inset-0 z-10 p-3 text-white bg-black w-popup">
+        <div className="fixed flex flex-col items-center justify-start top-9 bottom-9 p-3 shadow-lg left-1/2 -translate-x-1/2 inset-0 z-10  text-white bg-black w-popup">
           <div className="flex flex-col">
-            <button onClick={closeShowEditPopup}>
+            <button onClick={() => setIsShowEditPopup(!isShowEditPopup)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -111,16 +105,16 @@ const Popup = ({ heading, isEdit, movie }) => {
                 </g>
               </svg>
             </button>
-            <h1 className="text-3xl text-white mt-5 mb-3">{heading}</h1>
+            <h1 className="text-5xl text-white mt-16 mb-9">{heading}</h1>
             <div className="flex">
-              <div className="flex flex-col mr-8">
+              <div className="flex flex-col mr-8 basis-1/2">
                 <TextInput
                   placeholder={movie.title}
                   label="TITLE"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2">
                 <TextInput
                   placeholder={movie.date}
                   label="RELEASE DATE"
@@ -129,14 +123,14 @@ const Popup = ({ heading, isEdit, movie }) => {
               </div>
             </div>
             <div className="flex">
-              <div className="flex flex-col mr-8">
+              <div className="flex flex-col mr-8 basis-1/2">
                 <TextInput
                   placeholder="dssdsdsdsdsdsd"
                   label="MOVIE URL"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2">
                 <TextInput
                   placeholder={movie.rate}
                   label="RATING"
@@ -144,11 +138,11 @@ const Popup = ({ heading, isEdit, movie }) => {
                 />
               </div>
             </div>
-            <div className="flex">
-              <div className="flex flex-col mr-8">
+            <div className="flex justify-between">
+              <div className="flex flex-col basis-1/2 mr-8">
                 <Select items={options} label="GENRE" />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2">
                 <TextInput
                   placeholder={movie.runtime}
                   label="RUNTIME"

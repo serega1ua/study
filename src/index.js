@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 // import App from "./App";
+import { Provider } from "react-redux";
+import { store } from "./app/store/index.js";
 import Movies from "./pages/Movies/Movies";
 import Login from "./pages/Login/Login";
 import {
@@ -16,16 +18,18 @@ import MainContextWrapper from "./context/MainContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ErrorBoundary>
-    <MainContextWrapper>
-      <Router>
-        <React.StrictMode>
-          <Routes>
-            <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/movies" element={<Movies />} />
-          </Routes>
-        </React.StrictMode>
-      </Router>
-    </MainContextWrapper>
+    <Provider store={store}>
+      <MainContextWrapper>
+        <Router>
+          <React.StrictMode>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/movies" element={<Movies />} />
+            </Routes>
+          </React.StrictMode>
+        </Router>
+      </MainContextWrapper>
+    </Provider>
   </ErrorBoundary>
 );

@@ -4,10 +4,11 @@ import Popup from "../../components/MoviesLayout/Main/components/Popup/Popup";
 import SuccessAddedPopup from "../../components/MoviesLayout/Main/components/Popup/SuccessAddedPopup";
 import MainSection from "../../components/MoviesLayout/Main/MainSection";
 import { Context } from "../../context/MainContext";
-import usePopup from "../../hooks/usePopup";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "../../app/features/moviesReducer";
+import MovieTemplatePoster from "../../assets/movie-poster-template.jpg";
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
   const [isContextShow, setIsContextShow] = useState({
     triggeredMovie: false,
     id: 1,
@@ -18,43 +19,40 @@ const Movies = () => {
     isShowEditPopup,
     setIsShowEditPopup,
     isShowSuccessAddedPopup,
+    setIsShowSuccessAddedPopup,
+    isSelectedMovie,
+    selectedMovie,
     setSelectedMovie,
     setIsSelectedMovie,
   } = useContext(Context);
-  const fetchMovies = async () => {
-    const res = await fetch(
-      "data.json",
+  const dispatch = useDispatch();
+  const reduxMovies = useSelector((state) => state?.movies);
+  // const fetchMovies = async () => {
+  //   const res = await fetch(
+  //     "data.json",
 
-      {
-        headers: {
-          "Content-Type": "application/json",
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json",
 
-          Accept: "application/json",
-        },
-      }
-    );
-    const data = await res.json();
-    setMovies(data);
-  };
-  const showEditPopup = usePopup(false, setIsShowEditPopup, isShowEditPopup);
-  const showDeletePopup = usePopup(
-    false,
-    setIsShowDeletePopup,
-    isShowDeletePopup
-  );
+  //         Accept: "application/json",
+  //       },
+  //     }
+  //   );
+  //   const data = await res.json();
+  //   setMovies(data);
+  // };
   const setModalOn = (id) => {
-    const currentMovie = movies.filter((movie) => movie.id === id);
-    currentMovie[0].triggered = true;
+    const currentMovie = reduxMovies.filter((movie) => movie.id === id);
     setIsContextShow({
-      triggeredMovie: currentMovie[0].triggered,
       id: currentMovie[0].id,
+      triggeredMovie: currentMovie[0],
     });
   };
   const setModalOff = (id) => {
-    const currentMovie = movies.filter((movie) => movie.id === id);
-    currentMovie[0].triggered = false;
+    const currentMovie = reduxMovies.filter((movie) => movie.id === id);
     setIsContextShow({
-      triggeredMovie: currentMovie[0].triggered,
+      triggeredMovie: false,
       id: currentMovie[0].id,
     });
   };
@@ -62,8 +60,12 @@ const Movies = () => {
     setIsSelectedMovie(true);
     setSelectedMovie(movie);
   };
+  const fetchMoviesWithRedux = () => {
+    // @ts-ignore
+    dispatch(fetchMovies());
+  };
   useEffect(() => {
-    fetchMovies();
+    fetchMoviesWithRedux();
   }, []);
   return (
     <MainSection>
@@ -71,14 +73,15 @@ const Movies = () => {
         <div className="flex flex-wrap max-w-5xl justify-between m-auto">
           <div className="flex flex-col justify-between items-start">
             <h2 className="text-white text-xl mt-6">
-              <span className="font-bold">{movies.length}</span> movies found
+              <span className="font-bold">{reduxMovies.length}</span> movies
+              found
             </h2>
             <div className="flex flex-wrap justify-between">
-              {movies.map((movie) => (
+              {reduxMovies.map((movie) => (
                 <div key={movie.id} className="mt-6">
                   <div className="group relative">
                     <img
-                      src={movie.cover}
+                      src={movie.poster_path}
                       alt={movie.title}
                       onClick={() => selectMovie(movie)}
                     />
@@ -129,12 +132,20 @@ const Movies = () => {
                           </button>
                           <ul>
                             <li className="mt-3 hover:bg-lightred">
-                              <a href="#edit" onClick={showEditPopup}>
+                              <a
+                                href="#edit"
+                                onClick={() =>
+                                  setIsShowEditPopup(!isShowEditPopup)
+                                }
+                              >
                                 Edit
                               </a>
                             </li>
                             <li className="mt-3 hover:bg-lightred hover:min-w-max">
-                              <a href="#delete" onClick={showDeletePopup}>
+                              <a
+                                href="#delete"
+                                onClick={() => setIsShowDeletePopup(true)}
+                              >
                                 Delete
                               </a>
                             </li>
@@ -149,11 +160,11 @@ const Movies = () => {
                   <div className="flex items-center justify-between mt-5">
                     <h3 className="text-white">{movie.title}</h3>
                     <span className="text-white text-sm border-2 rounded border-superlightgray py-1 px-2">
-                      {movie.year}
+                      {movie.release_date}
                     </span>
                   </div>
                   <h3 className="text-white opacity-50 mb-12">
-                    {movie.genres}
+                    {movie.genres.map((genre) => genre + " ")}
                   </h3>
                 </div>
               ))}
