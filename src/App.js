@@ -1,9 +1,27 @@
-import logo from "./logo.svg";
-import "./App.css";
-import React from "react";
+const Koa = require('koa')
+const bodyParser = require('koa-bodyparser')
+const cors = require('kcors')
+const koaSwagger = require('koa2-swagger-ui')
 
-function App() {
-  return <div className="App bg-gray">sds</div>;
-}
+const { parseQuery } = require('./utils')
+const swaggerApi = require('./api/swagger.api')
+const movieApi = require('./api/movie.api')
 
-export default App;
+const app = new Koa()
+  .use(cors())
+  .use(
+    koaSwagger({
+      routePrefix: '/api-docs',
+      swaggerOptions: {
+        url: '/swagger.yaml',
+      },
+    }),
+  )
+  .use(bodyParser())
+  .use(parseQuery)
+  .use(swaggerApi.routes())
+  .use(swaggerApi.allowedMethods())
+  .use(movieApi.routes())
+  .use(movieApi.allowedMethods())
+
+module.exports = exports = app
