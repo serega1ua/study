@@ -68,112 +68,112 @@ const Movies = () => {
     fetchMoviesWithRedux();
   }, []);
   return (
-    <MainSection>
-      <div className="bg-black">
-        <div className="flex flex-wrap max-w-5xl justify-between m-auto">
-          <div className="flex flex-col justify-between items-start">
-            <h2 className="text-white text-xl mt-6">
-              <span className="font-bold">{reduxMovies.length}</span> movies
-              found
-            </h2>
-            <div className="flex flex-wrap justify-between">
-              {reduxMovies.map((movie) => (
-                <div key={movie.id} className="mt-6">
-                  <div className="group relative">
-                    <img
-                      src={movie.poster_path}
-                      alt={movie.title}
-                      onClick={() => selectMovie(movie)}
-                    />
-                    <button
-                      onClick={() => setModalOn(movie.id)}
-                      className="hidden bg-gray py-1 px-1 rounded-full group-hover:block group-hover:absolute group-hover:top-3 group-hover:right-2"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        className="humbleicons hi-dots-vertical w-12 text-white"
-                      >
-                        <g
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
+      <MainSection>
+        <div className="bg-black">
+          <div className="flex flex-wrap max-w-5xl justify-between m-auto">
+            <div className="flex flex-col justify-between items-start">
+              <h2 className="text-white text-xl mt-6">
+                <span className="font-bold">{reduxMovies.length}</span> movies
+                found
+              </h2>
+              <div className="flex flex-wrap justify-between">
+                {reduxMovies.map((movie) => (
+                    <div key={movie.id} className="mt-6">
+                      <div className="group relative">
+                        <img
+                            src={movie.poster_path}
+                            alt={movie.title}
+                            onClick={() => selectMovie(movie)}
+                        />
+                        <button
+                            onClick={() => setModalOn(movie.id)}
+                            className="hidden bg-gray py-1 px-1 rounded-full group-hover:block group-hover:absolute group-hover:top-3 group-hover:right-2"
                         >
-                          <rect width="4" height="4" x="10" y="3" rx="2" />
-                          <rect width="4" height="4" x="10" y="10" rx="2" />
-                          <rect width="4" height="4" x="10" y="17" rx="2" />
-                        </g>
-                      </svg>
-                    </button>
-                    {isContextShow.id === movie.id &&
-                      isContextShow.triggeredMovie && (
-                        <div className="context-menu bg-black py-6 pr-10 pl-2 text-white absolute top-0 right-0">
-                          <button
-                            className="absolute top-1 right-1"
-                            onClick={() => setModalOff(movie.id)}
-                          >
-                            <svg
+                          <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
-                              className="humbleicons hi-times w-12"
-                            >
-                              <g
+                              className="humbleicons hi-dots-vertical w-12 text-white"
+                          >
+                            <g
                                 xmlns="http://www.w3.org/2000/svg"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-width="2"
-                              >
-                                <path d="M6 18L18 6M18 18L6 6" />
-                              </g>
-                            </svg>
-                          </button>
-                          <ul>
-                            <li className="mt-3 hover:bg-lightred">
-                              <a
-                                href="#edit"
-                                onClick={() =>
-                                  setIsShowEditPopup(!isShowEditPopup)
-                                }
-                              >
-                                Edit
-                              </a>
-                            </li>
-                            <li className="mt-3 hover:bg-lightred hover:min-w-max">
-                              <a
-                                href="#delete"
-                                onClick={() => setIsShowDeletePopup(true)}
-                              >
-                                Delete
-                              </a>
-                            </li>
-                          </ul>
-                          {isShowDeletePopup && <DeletePopup />}
-                          {isShowEditPopup && (
-                            <Popup movie={movie} isEdit={true} heading="EDIT" />
-                          )}
-                        </div>
-                      )}
-                  </div>
-                  <div className="flex items-center justify-between mt-5">
-                    <h3 className="text-white">{movie.title}</h3>
-                    <span className="text-white text-sm border-2 rounded border-superlightgray py-1 px-2">
+                                fill="currentColor"
+                            >
+                              <rect width="4" height="4" x="10" y="3" rx="2" />
+                              <rect width="4" height="4" x="10" y="10" rx="2" />
+                              <rect width="4" height="4" x="10" y="17" rx="2" />
+                            </g>
+                          </svg>
+                        </button>
+                        {isContextShow.id === movie.id &&
+                            isContextShow.triggeredMovie && (
+                                <div className="context-menu bg-black py-6 pr-10 pl-2 text-white absolute top-0 right-0">
+                                  <button
+                                      className="absolute top-1 right-1"
+                                      onClick={() => setModalOff(movie.id)}
+                                  >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        className="humbleicons hi-times w-12"
+                                    >
+                                      <g
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          stroke="currentColor"
+                                          stroke-linecap="round"
+                                          stroke-width="2"
+                                      >
+                                        <path d="M6 18L18 6M18 18L6 6" />
+                                      </g>
+                                    </svg>
+                                  </button>
+                                  <ul>
+                                    <li className="mt-3 hover:bg-lightred">
+                                      <a
+                                          href="#edit"
+                                          onClick={() =>
+                                              setIsShowEditPopup(!isShowEditPopup)
+                                          }
+                                      >
+                                        Edit
+                                      </a>
+                                    </li>
+                                    <li className="mt-3 hover:bg-lightred hover:min-w-max">
+                                      <a
+                                          href="#delete"
+                                          onClick={() => setIsShowDeletePopup(true)}
+                                      >
+                                        Delete
+                                      </a>
+                                    </li>
+                                  </ul>
+                                  {isShowDeletePopup && <DeletePopup />}
+                                  {isShowEditPopup && (
+                                      <Popup movie={movie} isEdit={true} heading="EDIT" />
+                                  )}
+                                </div>
+                            )}
+                      </div>
+                      <div className="flex items-center justify-between mt-5">
+                        <h3 className="text-white">{movie.title}</h3>
+                        <span className="text-white text-sm border-2 rounded border-superlightgray py-1 px-2">
                       {movie.release_date}
                     </span>
-                  </div>
-                  <h3 className="text-white opacity-50 mb-12">
-                    {movie.genres.map((genre) => genre + " ")}
-                  </h3>
-                </div>
-              ))}
+                      </div>
+                      <h3 className="text-white opacity-50 mb-12">
+                        {movie.genres.map((genre) => genre + " ")}
+                      </h3>
+                    </div>
+                ))}
+              </div>
+              {isShowSuccessAddedPopup && <SuccessAddedPopup />}
             </div>
-            {isShowSuccessAddedPopup && <SuccessAddedPopup />}
           </div>
         </div>
-      </div>
-    </MainSection>
+      </MainSection>
   );
 };
 

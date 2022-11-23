@@ -17,19 +17,20 @@ import MainContextWrapper from "./context/MainContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ErrorBoundary>
-    <Provider store={store}>
-      <MainContextWrapper>
-        <Router>
-          <React.StrictMode>
-            <Routes>
-              <Route path="/" element={<Navigate to="/login" replace />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/movies" element={<Movies />} />
-            </Routes>
-          </React.StrictMode>
-        </Router>
-      </MainContextWrapper>
-    </Provider>
-  </ErrorBoundary>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <MainContextWrapper>
+          <Router>
+            <React.StrictMode>
+              <Routes>
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/movies" element={<Movies />} />
+              </Routes>
+            </React.StrictMode>
+          </Router>
+        </MainContextWrapper>
+      </Provider>
+    </ErrorBoundary>
 );
+

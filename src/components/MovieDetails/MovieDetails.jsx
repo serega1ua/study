@@ -28,21 +28,17 @@ const MovieDetails = ({ movie }) => {
         </button>
       </header>
       <div className="w-details flex border-lightgray border-b-8 pb-5">
-        <img src={movie.poster_path} alt={movie.title} />
+        <img src={movie.cover} alt={movie.title} />
         <div className="flex flex-col ml-5">
           <h1 className="text-white text-4xl uppercase flex items-center">
             {movie.title}{" "}
             <span className="text-white border-white border-2 ml-5 rounded-full py-3 px-3 text-lg">
-              {movie.vote_average}
+              {movie.rate}
             </span>
           </h1>
-          <p className="text-white opacity-50 mb-4">
-            {movie.genres.map((genre) => genre + " ")}
-          </p>
+          <p className="text-white opacity-50 mb-4">{movie.genres}</p>
           <div className="flex justify-start mb-5">
-            <span className="text-lightred text-xl mr-4">
-              {movie.release_date}
-            </span>
+            <span className="text-lightred text-xl mr-4">{movie.year}</span>
             <span className="text-lightred text-xl">{movie.runtime}</span>
           </div>
           <div>
