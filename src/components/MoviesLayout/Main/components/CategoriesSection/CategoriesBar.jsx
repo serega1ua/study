@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   sortMoviesByReleaseDate,
   sortMoviesByRating,
@@ -8,15 +8,17 @@ import { useDispatch } from "react-redux";
 
 const CategoriesBar = () => {
   const dispatch = useDispatch();
+  const [tagReleaseDate, setTagReleaseDate] = useState("release_date");
+  const [tagRating, setTagRating] = useState("vote_average");
   const sortMoviesList = (type, order = "desc") => {
     if (type === "release_date") {
-      dispatch(sortMoviesByReleaseDate(order));
+      dispatch(sortMoviesByReleaseDate({order}));
     } else if (type === "vote_average") {
-      dispatch(sortMoviesByRating(order));
+      dispatch(sortMoviesByRating({order}));
     }
   };
   const filterByGenres = (genre) => {
-    dispatch(filterMoviesByGenres(genre));
+    dispatch(filterMoviesByGenres({filter: genre}));
   };
   return (
       <div className="bg-black py-5 max-w-5xl justify-between flex m-auto border-mediumgray border-b-2">
@@ -69,53 +71,53 @@ const CategoriesBar = () => {
         </div>
         <div className="flex justify-center">
           <nav>
-            <a
-                href="#"
+            <span
                 className="text-white text-base uppercase mr-8 text-opacity-60"
             >
               Sort by
-            </a>
+            </span>
           </nav>
           <nav className="flex">
-            <select className="release-date-custom-select bg-transparent text-white  flex items-center text-base uppercase">
+            <select  onChange={(e) => {
+              if(e.target.value.includes("release_date")) {
+                sortMoviesList("release_date", e.target.value.slice(12).trim());
+              }
+              else if(e.target.value.includes("vote_average")) {
+                sortMoviesList("vote_average", e.target.value.slice(12).trim());
+              }
+            }} className="release-date-custom-select bg-transparent text-white  flex items-center text-base uppercase">
               <option
-                  onClick={() => sortMoviesList("release_date", "")}
-                  defaultValue=""
+                  value={`${tagReleaseDate}`}
                   className="text-black"
               >
                 Release Date
               </option>
               <option
-                  onClick={() => sortMoviesList("release_date", "desc")}
-                  value="new"
+                  value={`${tagReleaseDate} desc`}
                   className="text-black"
               >
                 New
               </option>
               <option
-                  onClick={() => sortMoviesList("release_date", "asc")}
-                  value="old"
+                  value={`${tagReleaseDate} asc`}
                   className="text-black"
               >
                 Old
               </option>
               <option
-                  onClick={() => sortMoviesList("vote_average", "")}
-                  defaultValue=""
+                  value={`${tagRating}`}
                   className="text-black"
               >
                 Rating
               </option>
               <option
-                  onClick={() => sortMoviesList("vote_average", "desc")}
-                  value="higher"
+                  value={`${tagRating} desc`}
                   className="text-black"
               >
                 Higher
               </option>
               <option
-                  onClick={() => sortMoviesList("vote_average", "asc")}
-                  value="lower"
+                  value={`${tagRating} asc`}
                   className="text-black"
               >
                 Lower

@@ -46,11 +46,11 @@ const Popup = ({ heading, isEdit, movie }) => {
               </svg>
             </button>
             <h1 className="text-5xl text-white mt-10 mb-5">{heading}</h1>
-            <div className="flex">
-              <div className="flex flex-col mr-8">
+            <div className="flex max-w-fit">
+              <div className="flex flex-col mr-8 basis-1/2 max-w-fit">
                 <TextInput placeholder="Title:" label="TITLE" type="text" />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2 max-w-fit">
                 <TextInput
                   placeholder="Date: "
                   label="RELEASE DATE"
@@ -58,15 +58,15 @@ const Popup = ({ heading, isEdit, movie }) => {
                 />
               </div>
             </div>
-            <div className="flex">
-              <div className="flex flex-col mr-8">
+            <div className="flex max-w-fit">
+              <div className="flex flex-col mr-8 basis-1/2 max-w-fit">
                 <TextInput
                   placeholder="Movie URL: "
                   label="MOVIE URL"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2 max-w-fit">
                 <TextInput placeholder="Rating" label="RATING" type="number" />
               </div>
             </div>
@@ -112,33 +112,33 @@ const Popup = ({ heading, isEdit, movie }) => {
               </svg>
             </button>
             <h1 className="text-3xl text-white mt-5 mb-3">{heading}</h1>
-            <div className="flex">
-              <div className="flex flex-col mr-8">
+            <div className="flex max-w-fit">
+              <div className="flex flex-col mr-8 basis-1/2 max-w-fit">
                 <TextInput
                   placeholder={movie.title}
                   label="TITLE"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2 max-w-fit">
                 <TextInput
-                  placeholder={movie.date}
+                  placeholder={movie.release_date}
                   label="RELEASE DATE"
                   type="date"
                 />
               </div>
             </div>
-            <div className="flex">
-              <div className="flex flex-col mr-8">
+            <div className="flex max-w-fit">
+              <div className="flex flex-col mr-8 basis-1/2 max-w-fit">
                 <TextInput
-                  placeholder="dssdsdsdsdsdsd"
+                  placeholder={movie.poster_path}
                   label="MOVIE URL"
                   type="text"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col basis-1/2 max-w-fit">
                 <TextInput
-                  placeholder={movie.rate}
+                  placeholder={movie.vote_average}
                   label="RATING"
                   type="number"
                 />

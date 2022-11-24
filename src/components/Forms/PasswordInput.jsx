@@ -30,7 +30,7 @@ const PasswordInput = ({ label, type }) => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              className="humbleicons hi-eye w-6 text-lightred"
+              className="humbleicons hi-eye w-12 text-lightred"
             >
               <path
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const PasswordInput = ({ label, type }) => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              className="humbleicons hi-eye-off w-6 text-lightred"
+              className="humbleicons hi-eye-off w-12 text-lightred"
             >
               <path
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,16 +1,30 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
-  const res = await fetch("http://localhost:4000/movies?limit=10");
+  const res = await fetch("http://localhost:4000/movies?limit=10", {
+      headers: {
+          'Access-Control-Allow-Credentials' : true,
+          'Access-Control-Allow-Origin':'*',
+          'Access-Control-Allow-Methods':'GET',
+          'Access-Control-Allow-Headers':'application/json',
+      },
+  });
   const data = await res.json();
   return data.data;
 });
 
 export const sortMoviesByReleaseDate = createAsyncThunk(
   "movies/sortMoviesByReleaseDate",
-  async (order) => {
+  async ({order}) => {
     const res = await fetch(
-      `http://localhost:4000/movies?sortBy=release_date&sortOrder=${order}`
+      `http://localhost:4000/movies?sortBy=release_date&sortOrder=${order}`, {
+            headers: {
+                'Access-Control-Allow-Credentials' : true,
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Methods':'GET',
+                'Access-Control-Allow-Headers':'application/json',
+            },
+        }
     );
     const data = await res.json();
     return data.data;
@@ -19,7 +33,7 @@ export const sortMoviesByReleaseDate = createAsyncThunk(
 
 export const sortMoviesByRating = createAsyncThunk(
   "movies/sortMoviesByRating",
-  async (order) => {
+  async ({order}) => {
     const res = await fetch(
       `http://localhost:4000/movies?sortBy=vote_average&sortOrder=${order}`
     );
@@ -30,8 +44,15 @@ export const sortMoviesByRating = createAsyncThunk(
 
 export const filterMoviesByGenres = createAsyncThunk(
   "movies/filterMovieByGenres",
-  async (filter) => {
-    const res = await fetch(`http://localhost:4000/movies?filter=${filter}`);
+  async ({filter}) => {
+    const res = await fetch(`http://localhost:4000/movies?filter=${filter}`, {
+          headers: {
+              'Access-Control-Allow-Credentials' : true,
+                  'Access-Control-Allow-Origin':'*',
+                  'Access-Control-Allow-Methods':'GET',
+                  'Access-Control-Allow-Headers':'application/json',
+          },
+      });
     const data = await res.json();
     return data.data;
   }
@@ -45,16 +66,16 @@ const moviesReducer = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
-      state.movies = action.payload;
+      state.movies = action.payload
     });
     builder.addCase(sortMoviesByReleaseDate.fulfilled, (state, action) => {
       state.movies = action.payload;
     });
     builder.addCase(sortMoviesByRating.fulfilled, (state, action) => {
-      state.movies = action.payload;
+      state.movies = action.payload
     });
     builder.addCase(filterMoviesByGenres.fulfilled, (state, action) => {
-      state.movies = action.payload;
+      state.movies = action.payload
     });
   },
 });

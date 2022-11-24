@@ -65,7 +65,7 @@ const Movies = () => {
     dispatch(fetchMovies());
   };
   useEffect(() => {
-    fetchMoviesWithRedux();
+    fetchMoviesWithRedux()
   }, []);
   return (
       <MainSection>
