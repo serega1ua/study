@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, {useContext, useEffect} from "react";
 import { Context } from "../../../../../context/MainContext";
 import useRoute from "../../../../../hooks/useRoute";
 import usePopup from "../../../../../hooks/usePopup";
+import {deleteSelectedMovie, fetchMovies} from "../../../../../app/features/moviesReducer";
+import {useDispatch} from "react-redux";
 
-const DeletePopup = () => {
+const DeletePopup = ({movieId}) => {
   const { isShowDeletePopup, setIsShowDeletePopup } = useContext(Context);
   const navigateToPage = useRoute("/movies");
   const closePopup = usePopup(
@@ -11,6 +13,15 @@ const DeletePopup = () => {
     setIsShowDeletePopup,
     isShowDeletePopup
   );
+  const dispatch = useDispatch();
+  const deleteMovie = () => {
+    dispatch(deleteSelectedMovie({movieId: movieId}));
+    navigateToPage();
+  }
+  const deleteMovieAndClosePopup = () => {
+    deleteMovie();
+    closePopup();
+  }
   return (
     <div className="bg-black shadow-lg z-50 fixed left-1/2 -translate-x-1/2 h-96 top-20 w-ultraxxl flex flex-col items-center justify-center">
       <div className="flex flex-col items-end m-auto text-center justify-start">
@@ -40,7 +51,7 @@ const DeletePopup = () => {
         </div>
         <div className="flex justify-end">
           <button
-            onClick={closePopup}
+            onClick={deleteMovieAndClosePopup}
             className="text-white ml-4 rounded bg-lightred uppercase px-14 py-4"
           >
             Confirm

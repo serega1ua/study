@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import AddBtn from "./AddBtn";
 import Popup from "./components/Popup/Popup";
 import { Context } from "../../../context/MainContext";

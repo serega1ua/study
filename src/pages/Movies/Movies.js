@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DeletePopup from "../../components/MoviesLayout/Main/components/Popup/DeletePopup";
 import Popup from "../../components/MoviesLayout/Main/components/Popup/Popup";
 import SuccessAddedPopup from "../../components/MoviesLayout/Main/components/Popup/SuccessAddedPopup";
@@ -6,7 +6,6 @@ import MainSection from "../../components/MoviesLayout/Main/MainSection";
 import { Context } from "../../context/MainContext";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../../app/features/moviesReducer";
-import MovieTemplatePoster from "../../assets/movie-poster-template.jpg";
 
 const Movies = () => {
   const [isContextShow, setIsContextShow] = useState({
@@ -19,9 +18,6 @@ const Movies = () => {
     isShowEditPopup,
     setIsShowEditPopup,
     isShowSuccessAddedPopup,
-    setIsShowSuccessAddedPopup,
-    isSelectedMovie,
-    selectedMovie,
     setSelectedMovie,
     setIsSelectedMovie,
   } = useContext(Context);
@@ -150,7 +146,7 @@ const Movies = () => {
                                       </a>
                                     </li>
                                   </ul>
-                                  {isShowDeletePopup && <DeletePopup />}
+                                  {isShowDeletePopup && <DeletePopup movieId={movie.id} />}
                                   {isShowEditPopup && (
                                       <Popup movie={movie} isEdit={true} heading="EDIT" />
                                   )}

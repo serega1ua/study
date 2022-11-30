@@ -8,8 +8,8 @@ import { useDispatch } from "react-redux";
 
 const CategoriesBar = () => {
   const dispatch = useDispatch();
-  const [tagReleaseDate, setTagReleaseDate] = useState("release_date");
-  const [tagRating, setTagRating] = useState("vote_average");
+  const [tagReleaseDate] = useState("release_date");
+  const [tagRating] = useState("vote_average");
   const sortMoviesList = (type, order = "desc") => {
     if (type === "release_date") {
       dispatch(sortMoviesByReleaseDate({order}));

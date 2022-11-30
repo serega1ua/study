@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import CategoriesSection from "./components/CategoriesSection/CategoriesSection";
-import Header from "./Header";
 import { HeroSection } from "./HeroSection";
 
 const MainSection = ({ children }) => {

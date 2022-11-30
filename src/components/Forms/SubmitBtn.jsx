@@ -3,8 +3,10 @@ import { Context } from "../../context/MainContext";
 import PropTypes from "prop-types";
 import useRoute from "../../hooks/useRoute";
 import usePopup from "../../hooks/usePopup";
+import {useDispatch} from "react-redux";
+import {fetchMovies} from "../../app/features/moviesReducer";
 
-const SubmitBtn = ({ isEdit }) => {
+const SubmitBtn = ({ isEdit, disabled, postNewMovie, submitEditedMovie }) => {
   const { isShowPopup, setIsShowPopup, isShowEditPopup, setIsShowEditPopup, setIsShowSuccessAddedPopup } =
     useContext(Context);
   const navigateToEditedMovie = useRoute("/movies#success-edited-movie");
@@ -13,22 +15,29 @@ const SubmitBtn = ({ isEdit }) => {
     setIsShowPopup,
     isShowPopup
   );
+  const dispatch = useDispatch();
   const closeEditedPopup = usePopup(
     navigateToEditedMovie,
     setIsShowEditPopup,
     isShowEditPopup
   );
   const navigateAndClosePopup = () => {
+    postNewMovie();
+    dispatch(fetchMovies);
     closePopup();
     setIsShowSuccessAddedPopup(true);
   };
   const navigateAndClosePopupAfterEditing = () => {
+    submitEditedMovie();
+    dispatch(fetchMovies);
     closeEditedPopup();
   };
 
   return (
     <>
       <button
+          type="submit"
+          disabled={disabled}
         onClick={
           !isEdit ? navigateAndClosePopup : navigateAndClosePopupAfterEditing
         }
