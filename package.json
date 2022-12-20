@@ -1,34 +1,60 @@
 {
-  "name": "movie-api-server",
+  "name": "home-app",
   "version": "0.1.0",
-  "description": "Movie API Server",
-  "main": "src/index.js",
-  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "formik": "^2.2.9",
+    "humbleicons": "^1.9.0",
+    "jest": "^27.5.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.4",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "web-vitals": "^2.1.4"
+  },
   "scripts": {
-    "start": "node ./src/index.js",
-    "watch": "nodemon --exec npm run start",
-    "lint": "eslint ./src",
-    "test": "jest"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.8.4",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "jest": "^25.1.0",
-    "nodemon": "^2.0.2"
-  },
-  "dependencies": {
-    "@hapi/joi": "^17.1.0",
-    "axios": "^0.19.2",
-    "kcors": "^2.2.2",
-    "koa": "^2.11.0",
-    "koa-bodyparser": "^4.2.1",
-    "koa-router": "^8.0.6",
-    "koa2-swagger-ui": "^2.16.0",
-    "lodash": "^4.17.15"
+    "@wdio/cli": "^8.0.12",
+    "@wdio/local-runner": "^8.0.12",
+    "@wdio/mocha-framework": "^8.0.11",
+    "@wdio/spec-reporter": "^8.0.11",
+    "autoprefixer": "^10.4.13",
+    "chromedriver": "^108.0.0",
+    "cypress": "^12.0.2",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.1",
+    "wdio-chromedriver-service": "^8.0.1",
+    "webdriverio": "^8.0.9"
   }
 }

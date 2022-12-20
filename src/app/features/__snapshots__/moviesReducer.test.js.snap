@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`correct work of setIsSelected reducer 1`] = `
+Object {
+  "isSelected": true,
+}
+`;
+
+exports[`correct work of setMovies reducer 1`] = `
+Object {
+  "movies": Array [
+    Object {
+      "id": 1,
+      "title": "Film",
+    },
+  ],
+}
+`;
+
+exports[`correct work setMovies 1`] = `
+Object {
+  "movies": Array [
+    Object {
+      "id": 1,
+      "title": 1,
+    },
+  ],
+}
+`;
